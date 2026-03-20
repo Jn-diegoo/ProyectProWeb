@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportar Mascota Perdida - PetHelper</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">🐾 Patitas a Casa 🐾</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="reportar.html" class="active">Reportar Perdida</a></li>
+                <li><a href="adopciones.html">Adopciones</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container page-content">
+        <section class="form-section">
+            <h1>Reportar Mascota Perdida</h1>
+            <p class="subtitle">Completa el formulario para ayudarnos a encontrar tu mascota</p>
+
+            <form class="report-form">
+                <!-- Información de la Mascota -->
+                <fieldset>
+                    <legend>Información de la Mascota</legend>
+                    
+                    <div class="form-group">
+                        <label for="tipo-mascota">Tipo de Mascota:</label>
+                        <select id="tipo-mascota" name="tipo-mascota" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="perro">Perro</option>
+                            <option value="gato">Gato</option>
+                            <option value="conejo">Conejo</option>
+                            <option value="pajaro">Pájaro</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre-mascota">Nombre de la Mascota:</label>
+                        <input type="text" id="nombre-mascota" name="nombre-mascota" placeholder="Ejemplo: Pony Salvaje" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="raza">Raza:</label>
+                        <input type="text" id="raza" name="raza" placeholder="Ejemplo: Pastor Australiano" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color">Color/Descripción Física:</label>
+                        <textarea id="color" name="color" placeholder="Describenos sus características: color, tamaño, marcas especiales..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edad">Edad Aproximada:</label>
+                        <input type="text" id="edad" name="edad" placeholder="Ejemplo: 3 años">
+                    </div>
+                </fieldset>
+
+                <!-- Información de la Pérdida -->
+                <fieldset>
+                    <legend>Información de la Pérdida</legend>
+                    
+                    <div class="form-group">
+                        <label for="fecha-perdida">Fecha en que se Perdió:</label>
+                        <input type="date" id="fecha-perdida" name="fecha-perdida" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ubicacion">Ubicación (Donde se Perdió):</label>
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detalles">Detalles Adicionales:</label>
+                        <textarea id="detalles" name="detalles" placeholder=""></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fotos">Sube Fotos (máximo 3):</label>
+                        <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
+                        <small>Formatos: JPG, PNG. Las fotos claras ayudan a identificar mejor la mascota.</small>
+                    </div>
+                </fieldset>
+
+                <!-- Información de Contacto -->
+                <fieldset>
+                    <legend>Información de Contacto</legend>
+                    
+                    <div class="form-group">
+                        <label for="nombre-dueno">Tu Nombre:</label>
+                        <input type="text" id="nombre-dueno" name="nombre-dueno" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+1 234 567 8900" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad/Municipio:</label>
+                        <input type="text" id="ciudad" name="ciudad" required>
+                    </div>
+                </fieldset>
+
+                <!-- Botones -->
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Publicar Reporte</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar Formulario</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
