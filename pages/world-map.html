@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Global - 🐾 Patitas a Casa 🐾</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <style>
+        #mapContainer {
+            width: 100%;
+            height: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">🐾 Patitas a Casa 🐾</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="reportar.html">Reportar Perdida</a></li>
+                <li><a href="donaciones.html">Donar</a></li>
+                <li><a href="world-map.html" class="active">Mapa Global</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container page-content">
+        <!-- Mapa de Reportes Globales -->
+        <section class="global-reports-section">
+            <h1>📍 Reportes de Mascotas Perdidas Globales</h1>
+            <p class="subtitle">Visualiza el impacto de nuestra comunidad en el mundo - Los colores más intensos indican más reportes</p>
+
+            <div id="mapContainer"></div>
+        </section>
+    </div>
+
+    <script>
+        // Datos de reportes por país (vacío de momento)
+        const countriesData = {};
+
+        // Inicializar mapa
+        const map = L.map('mapContainer').setView([20, 0], 2);
+
+        // Agregar capa de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Función para obtener color según cantidad de reportes
+        function getColor(reports) {
+            if (reports > 250) return '#c41e3a';
+            if (reports > 200) return '#dc3545';
+            if (reports > 150) return '#e74c3c';
+            if (reports > 100) return '#f39c12';
+            if (reports > 50) return '#f1c40f';
+            return '#ff6b6b';
+        }
+
+        // Agregar marcadores para cada país
+        Object.values(countriesData).forEach(country => {
+            const circle = L.circleMarker([country.lat, country.lng], {
+                radius: Math.sqrt(country.reports) * 0.8,
+                fillColor: getColor(country.reports),
+                color: '#8B0000',
+                weight: 2,
+                opacity: 0.8,
+                fillOpacity: 0.7
+            }).addTo(map);
+
+            circle.bindPopup(`
+                <div style="text-align: center;">
+                    <strong>${country.name}</strong><br>
+                    📍 ${country.reports} reportes<br>
+                    <small style="color: #888;">Haz clic para más info</small>
+                </div>
+            `);
+
+            circle.on('mouseover', function() {
+                this.setStyle({ weight: 3, opacity: 1 });
+            });
+            circle.on('mouseout', function() {
+                this.setStyle({ weight: 2, opacity: 0.8 });
+            });
+        });
+
+        // Agregar leyenda
+        const legend = L.control({ position: 'bottomright' });
+        legend.onAdd = function(map) {
+            const div = L.DomUtil.create('div', 'info legend');
+            div.style.backgroundColor = 'white';
+            div.style.padding = '10px';
+            div.style.borderRadius = '5px';
+            div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
+            div.innerHTML = `
+                <p style="margin: 0 0 5px 0; font-weight: bold;">Reportes por País</p>
+                <i style="background: #c41e3a; width: 18px; height: 18px; float: left; margin-right: 8px; border-radius: 50%; display: inline-block;"></i> > 250<br>
+                <i style="background: #dc3545; width: 18px; height: 18px; float: left; margin-right: 8px; border-radius: 50%; display: inline-block;"></i> 200-250<br>
+                <i style="background: #e74c3c; width: 18px; height: 18px; float: left; margin-right: 8px; border-radius: 50%; display: inline-block;"></i> 150-200<br>
+                <i style="background: #f39c12; width: 18px; height: 18px; float: left; margin-right: 8px; border-radius: 50%; display: inline-block;"></i> 100-150<br>
+                <i style="background: #f1c40f; width: 18px; height: 18px; float: left; margin-right: 8px; border-radius: 50%; display: inline-block;"></i> < 100
+            `;
+            return div;
+        };
+        legend.addTo(map);
+    </script>
+</body>
+</html>

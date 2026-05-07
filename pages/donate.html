@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donar - 🐾 Patitas a Casa 🐾</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">🐾 Patitas a Casa 🐾</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="reportar.html">Reportar Perdida</a></li>
+                <li><a href="donate.html" class="active">Donar</a></li>
+                <li><a href="world-map.html">Mapa Global</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container page-content">
+        <!-- Sección de Donaciones -->
+        <section class="donation-section">
+            <h1>🤝 Ayuda a Nuestros Amigos Peludos</h1>
+            <p class="subtitle">Tu donación ayuda a rescatar y reunir mascotas perdidas con sus familias</p>
+
+            <div class="donation-content">
+                <div class="donation-info">
+                    <h2>¿Cómo tu donación nos ayuda?</h2>
+                    <ul class="benefits-list">
+                        <li> Mantener la plataforma activa y segura</li>
+                        <li> Publicitar reportes en redes sociales</li>
+                        <li> Microchips de identificación para mascotas</li>
+                        <li> Refugio y cuidado veterinario</li>
+                        <li> Alcance comunitario y eventos de adopción</li>
+                    </ul>
+
+                    <div class="donation-amounts">
+                        <h3>Montos Disponibles</h3>
+                        <p class="amount-option"> $10 - Ayuda básica</p>
+                        <p class="amount-option"> $25 - Donación regular</p>
+                        <p class="amount-option"> $50 - Donación generosa</p>
+                        <p class="amount-option"> $100+ - Donación extraordinaria</p>
+                    </div>
+                </div>
+
+                <div class="paypal-section">
+                    <h2>Realizar Donación</h2>
+                    <div id="donate-button-container">
+                        <div id="donate-button"></div>
+                        <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                        <script>
+                        PayPal.Donation.Button({
+                        env:'production',
+                        hosted_button_id:'YNLKZAZM7DFQL',
+                        image: {
+                        src:'https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif',
+                        alt:'Donate with PayPal button',
+                        title:'PayPal - The safer, easier way to pay online!',
+                        }
+                        }).render('#donate-button');
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <style>
+        .donation-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .donation-buttons form {
+            width: 100%;
+        }
+
+        .donation-buttons button {
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .donation-buttons button:hover {
+            transform: scale(1.02);
+        }
+
+        #donate-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</body>
+</html>
